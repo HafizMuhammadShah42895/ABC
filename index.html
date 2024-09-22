@@ -208,6 +208,7 @@
             height: 50px;
             margin: 10px;
             transition: transform 0.3s ease;
+            animation: bounce 2s infinite;
         }
 
         .contact-icons img:hover {
@@ -309,6 +310,19 @@
 
         .about-section .icon:hover {
             transform: rotate(360deg);
+        }
+
+        /* Bounce animation for contact icons */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
@@ -429,10 +443,10 @@
         <h1>Contact</h1>
         <p>Feel free to reach out to me through the following platforms:</p>
         <div class="contact-icons">
-            <a href="mailto:hafizmuhammadshah11@gmail.com"><img src="img/email_icon.png" alt="Email"></a>
-            <a href="https://github.com/yourusername" target="_blank"><img src="img/github_logo.png" alt="GitHub"></a>
-            <a href="https://wa.me/03450976304" target="_blank"><img src="img/whatsapp_logo.png" alt="WhatsApp"></a>
-            <a href="https://www.linkedin.com/in/hafiz-muhammad-779399247" target="_blank"><img src="img/linkedin_logo.png" alt="LinkedIn"></a>
+            <a href="mailto:hafizmuhammadshah11@gmail.com"><img src="img/email_icon.png" alt="Email" title="Email"></a>
+            <a href="https://github.com/yourusername" target="_blank"><img src="img/github_logo.png" alt="GitHub" title="GitHub"></a>
+            <a href="https://wa.me/03450976304" target="_blank"><img src="img/whatsapp_logo.png" alt="WhatsApp" title="WhatsApp"></a>
+            <a href="https://www.linkedin.com/in/hafiz-muhammad-779399247" target="_blank"><img src="img/linkedin_logo.png" alt="LinkedIn" title="LinkedIn"></a>
         </div>
     </div>
 
@@ -466,6 +480,18 @@
                         window.location.hash = hash;
                     });
                 }
+            });
+
+            // Tooltip for contact icons
+            $('.contact-icons img').tooltip();
+
+            // Click event for contact icons
+            $('.contact-icons img').on('click', function() {
+                var message = $('<div class="alert alert-success mt-3">Thank you for reaching out!</div>');
+                $('.contact-section').append(message);
+                message.fadeOut(3000, function() {
+                    $(this).remove();
+                });
             });
         });
     </script>
